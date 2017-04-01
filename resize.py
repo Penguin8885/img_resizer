@@ -40,11 +40,15 @@ if __name__ == '__main__':
     #resultディレクトリの中のファイルを全削除
     file_names = os.listdir("./result/")
     for file_name in file_names:
+        if file_name == ".gitkeep":
+            continue
         os.remove("./result/"+file_name)
 
     #dataディレクトリの画像を読み込み，リサイズ，resultディレクトリに保存
     file_names = os.listdir("./data/")
     for file_name in file_names:
+        if file_name == ".gitkeep":
+            continue
         print(file_name)
 
         #名前を変更した一時ファイルを保存(日本語名の画像をOpenCVが読み込めないため)，画像読み込み
