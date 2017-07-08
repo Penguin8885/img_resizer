@@ -21,4 +21,12 @@
  次のようにコンソールから実行します．<br>
  `python resize.py`<br>
  weight, heightにリサイズする横と縦のサイズを入力してstartボタンを押すと，inputフォルダの画像がすべて指定の横と縦サイズの画像にリサイズされます．<br>
+ <img src="https://github.com/Penguin8885/img_resizer/blob/master/sample_image/gui_sample_image.png" alt="GUIサンプル画像" title="GUIサンプル画像">
  
+# サンプル画像
+ ## input
+ <img src="" alt="inputサンプル画像" title="inputサンプル画像">
+ 
+ ## output
+ 300, 500でリサイズ
+ <img src="https://github.com/Penguin8885/img_resizer/blob/master/sample_image/output_sample_image.jpg" alt="outputサンプル画像" title="outputサンプル画像">
