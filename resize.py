@@ -3,8 +3,20 @@ import cv2
 import sys
 import os
 import shutil
+from PyQt5.QtWidgets import (QApplication, QWidget, QGridLayout, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton)
 
-def resize(img):
+
+#指定されたディレクトリの中のファイルを全削除
+def delete_files(directry):
+    file_names = os.listdir(directry)
+    for file_name in file_names:
+        if file_name == ".gitkeep":
+            continue
+        os.remove(directry+file_name)
+
+#画像をリサイズ
+def resize(img, base_w, base_h):
+    base_ratio = base_w / base_h   #リサイズ画像サイズ縦横比
     img_h, img_w = img.shape[:2]   #画像サイズ
     img_ratio = img_w / img_h      #画像サイズ縦横比
 
@@ -26,23 +38,9 @@ def resize(img):
 
     return resize_img
 
-
-if __name__ == '__main__':
-    args = sys.argv
-    if len(args) < 3:
-        print("usage: python resize.py resize_height_size resize_width_size")
-        print("example: python resize.py 200 280")
-        sys.exit(0)
-
-    base_h = int(args[1]); base_w = int(args[2])    #ベースサイズ
-    base_ratio = base_w / base_h                    #ベースサイズ縦横比
-
-    #resultディレクトリの中のファイルを全削除
-    file_names = os.listdir("./result/")
-    for file_name in file_names:
-        if file_name == ".gitkeep":
-            continue
-        os.remove("./result/"+file_name)
+#dataフォルダ内の画像を連続リサイズ
+def main(base_w, base_h):
+    delete_files("./result/") #resultに入っている全ファイルを削除
 
     #dataディレクトリの画像を読み込み，リサイズ，resultディレクトリに保存
     file_names = os.listdir("./data/")
@@ -59,9 +57,15 @@ if __name__ == '__main__':
         os.remove(read_tmp)
 
         #リサイズ
-        resize_img = resize(img)
+        resize_img = resize(img, base_w, base_h)
 
         #名前を変更した画像を書き込み(日本語名の画像をOpenCVが書き込めないため)，リネーム
         write_tmp = "./result/tmp.jpg"
         cv2.imwrite(write_tmp, resize_img)
         os.rename(write_tmp, "./result/"+root+".jpg")
+
+if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        print("usage: python resize.py width height")
+        sys.exit(0)
+    main(int(sys.argv[1]), int(sys.argv[2]))
