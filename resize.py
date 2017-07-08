@@ -7,12 +7,12 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QGridLayout, QVBoxLayout, QH
 
 
 #指定されたディレクトリの中のファイルを全削除
-def delete_files(directry):
-    file_names = os.listdir(directry)
+def delete_files(directory):
+    file_names = os.listdir(directory)
     for file_name in file_names:
         if file_name == ".gitkeep":
             continue
-        os.remove(directry+file_name)
+        os.remove(directory+file_name)
 
 #画像をリサイズ
 def resize(img, base_w, base_h):
