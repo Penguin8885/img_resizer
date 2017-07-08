@@ -25,8 +25,11 @@
  
 # サンプル画像
  ## input
- <img src="" alt="inputサンプル画像" title="inputサンプル画像">
+ 200, 200の画像
+ <img src="https://github.com/Penguin8885/img_resizer/blob/master/sample_image/input_sample_image.jpg" alt="inputサンプル画像" title="inputサンプル画像">
  
  ## output
- 300, 500でリサイズ
+ 500, 800でリサイズした結果<br>
+ 元画像の縦横比と違うので上と下に白い部分ができている
+ 
  <img src="https://github.com/Penguin8885/img_resizer/blob/master/sample_image/output_sample_image.jpg" alt="outputサンプル画像" title="outputサンプル画像">
