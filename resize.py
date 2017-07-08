@@ -38,12 +38,12 @@ def resize(img, base_w, base_h):
 
     return resize_img
 
-#dataフォルダ内の画像を連続リサイズ
+#inputディレクトリ内の画像を連続リサイズ
 def main(base_w, base_h):
-    delete_files("./result/") #resultに入っている全ファイルを削除
+    delete_files("./output/") #outputに入っている全ファイルを削除
 
-    #dataディレクトリの画像を読み込み，リサイズ，resultディレクトリに保存
-    file_names = os.listdir("./data/")
+    #inputディレクトリの画像を読み込み，リサイズ，outputディレクトリに保存
+    file_names = os.listdir("./input/")
     for file_name in file_names:
         if file_name == ".gitkeep":
             continue
@@ -52,7 +52,7 @@ def main(base_w, base_h):
         #名前を変更した一時ファイルを保存(日本語名の画像をOpenCVが読み込めないため)，画像読み込み
         root, ext = os.path.splitext(file_name)
         read_tmp = "./tmp" + ext
-        shutil.copyfile("./data/"+file_name, read_tmp)
+        shutil.copyfile("./input/"+file_name, read_tmp)
         img = cv2.imread(read_tmp)
         os.remove(read_tmp)
 
@@ -60,9 +60,9 @@ def main(base_w, base_h):
         resize_img = resize(img, base_w, base_h)
 
         #名前を変更した画像を書き込み(日本語名の画像をOpenCVが書き込めないため)，リネーム
-        write_tmp = "./result/tmp.jpg"
+        write_tmp = "./output/tmp.jpg"
         cv2.imwrite(write_tmp, resize_img)
-        os.rename(write_tmp, "./result/"+root+".jpg")
+        os.rename(write_tmp, "./output/"+root+".jpg")
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
