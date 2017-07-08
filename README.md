@@ -4,13 +4,18 @@
 
 # 環境
  Python, OpenCVが必要  
+ (GUIを使うときはPyQtが必要)  
 
 # 使い方
- resize.pyがあるディレクトリにdata, resultというフォルダを作っておきます．  
+ resize.pyがあるディレクトリにdata, resultというフォルダを作っておきます．  
  dataフォルダにリサイズしたい画像を入れます．  
 
  **[注意]** 実行時に初期化され，resultフォルダの中身は全消去されます．
 
- 使用例  
- `python resize.py 200 280`  
- dataフォルダの画像がすべて縦200, 横280の画像にリサイズされます．  
+## resize.pyの使い方
+ 使用例  
+ `python resize.py 280 200`  
+ dataフォルダの画像がすべて横280，縦200の画像にリサイズされます．  
+
+## resize_gui.pyの使い方
+　weight, heightにリサイズする横と縦のサイズを入力してstartボタンを押すと，dataフォルダの画像がすべて横280，縦200の画像にリサイズされます．  
